@@ -13,3 +13,23 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+    font: 14px "Montserrat", Helvetica, Arial, sans-serif !important;
+    color: #484848 !important;
+}
+
+a {
+    color: #484848 !important;
+    text-decoration: none !important;
+  }
+
+.test {
+    width: 100px;
+    height: 100px;
+    background-color: brown;
+}
+
+header {
+    margin-bottom: 20px;
+}
