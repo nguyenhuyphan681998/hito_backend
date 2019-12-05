@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    render json: { message: 'Hello' }
   end
 
   # POST /users
