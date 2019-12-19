@@ -6,3 +6,55 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('#rememberCheck').on('change', function () {
+        this.value = this.checked ? 1 : 0;
+    });
+    $("#signInForm").submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/sessions',
+            type: 'post',
+            data: {
+                session: {
+                    email: $("#signInEmail").val(),
+                    password: $("#signInPassword").val(),
+                    remember_me: $("#rememberCheck").val()
+                }
+            },
+            beforeSend: function () {
+                $("#signInLoader").removeClass("hidden");
+            },
+            success: function (res) {
+                $("#signInLoader").addClass("hidden");
+                $("#signInModal").modal('hide');
+                window.location.reload();
+            },
+            error: function (xhr) {
+                $("#signInLoader").addClass("hidden");
+                $("#signInMessage").removeClass("hidden");
+            }
+        });
+    });
+    function logout() {
+        $.ajax({
+            url: '/sessions',
+            type: 'delete',
+            beforeSend: function () {
+                $("#signOutLoader").show();
+            },
+            success: function (res) {
+                $("#signOutLoader").hide();
+                window.location.reload();
+            },
+            error: function (xhr) {
+                $("#signOutLoader").hide();
+            }
+        });
+    }
+</script>

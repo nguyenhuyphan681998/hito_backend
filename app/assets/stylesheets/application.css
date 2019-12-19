@@ -63,3 +63,38 @@ header {
     border-color:#B7B7B7 !important;
     box-shadow: 0 0 0 0rem #FFF !important;
 }
+
+.dropdown-item-container {
+    display: flex !important;
+    flex-direction: column !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+}
+
+.custom-dropdown-item {
+    display: flex;
+    font-size: 14px;
+    color: #777777 !important;
+    height: 50px;
+    border-bottom: solid 1px #EAEAEA;
+    flex-direction: column;
+      justify-content: center;
+      font-weight: 500;
+}
+
+
+.custom-dropdown-item:hover {
+    border-bottom-color: #777777 !important;
+}
+
+.modal-header {
+    border: 0;
+  }
+  
+.modal-footer {
+    border: 0;
+}
+  
+.modal {
+    border: 0 !important;
+}

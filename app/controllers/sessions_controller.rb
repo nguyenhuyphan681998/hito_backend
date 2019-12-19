@@ -7,15 +7,24 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_to user
+      respond_to do |format|
+        format.html { redirect_to user }
+        format.json { render json: { message: 'Login successful' } }
+      end
     else
-      flash.now[:danger] = 'Invalid email/password combination'
-      render 'new'
+      respond_to do |format|
+        flash.now[:danger] = 'Invalid email/password combination'
+        format.html {  render 'new' }
+        format.json { render json: { message: 'Login failed' } }
+      end
     end
   end
 
   def destroy
     log_out if logged_in?
-    redirect_to root_url
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.json { render json: { message: 'Logout successful' } }
+    end
   end
 end
