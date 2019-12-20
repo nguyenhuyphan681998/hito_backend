@@ -28,7 +28,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "Welcome!"
+      UserMailer.account_activation(@user).deliver_now
+      flash[:info] = "Please check your email to activate your account"
       respond_to do |format|
         format.html { redirect_to root_url }
         format.json { render json: { message: 'Create user successful' } }

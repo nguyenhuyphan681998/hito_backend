@@ -50,5 +50,3 @@ test:
 production:
   <<: *default
   database: hito_backend_production
-  username: hito_backend
-  password: <%= ENV['HITO_BACKEND_DATABASE_PASSWORD'] %>
