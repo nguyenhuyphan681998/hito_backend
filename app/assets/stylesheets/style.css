@@ -1,3 +1,11 @@
 .hidden {
     display: none;
 }
+
+.apt-line-8 {
+    width: 80%;
+  }
+  
+.apt-line-10 {
+    width: 100%;
+}

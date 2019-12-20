@@ -1,11 +1,29 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-    <aside class="col-md-5">
-        <section class="user_info">
-            <h1>
-                <%= gravatar_for @user %>
-                <%= @user.name %>
-            </h1>
-        </section>
-    </aside>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <%= render 'user' %>
+        </div>
+        <div class="col-sm-8">
+            <div style="margin-top: 50px">
+                <h3>Chào, tôi là <%= @user.first_name %></h3>
+                <p>
+                    Tham gia vào <%= @user.created_at %>
+                    <% if current_user?(@user) %>
+                    <b> · </b>
+                    <a class="edit-link" href="#">Chỉnh sửa profile</a>
+                    <% end %>
+                </p>
+                <hr class="my-3">
+                <h6>About</h6>
+                <% if @user.about? %>
+                <p><%= @user.about %></p>
+                <% else %>
+                <p>Chưa có.</p>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <div>
+    </div>
 </div>

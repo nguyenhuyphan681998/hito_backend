@@ -29,9 +29,15 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "Welcome!"
-      redirect_to @user
+      respond_to do |format|
+        format.html { redirect_to root_url }
+        format.json { render json: { message: 'Create user successful' } }
+      end
     else
-      render 'new'
+      respond_to do |format|
+        format.html { render 'new' }
+        format.json { render json: { message: 'Create user failed' }, status: :bad_request }
+      end
     end
   end
 
@@ -67,6 +73,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :first_name, :last_name)
     end
 end

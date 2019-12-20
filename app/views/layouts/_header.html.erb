@@ -1,7 +1,7 @@
 <header class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
-    <div class="container">
-        <a class="navbar-brand">
-            <img src="<%= image_path('hito-logo.png')%>" class="logo">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="<%= image_path('logo.jpg')%>" class="logo">
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -10,23 +10,25 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form id="searchForm" class="form-inline my-2 my-lg-0">
+            <form id="searchForm" class="form-inline my-2 my-lg-0 ml-auto">
                 <i class="input-icon fa fa-search"></i>
-                <input id="searchString" class="form-control mr-sm-2 search-bar" type="search" placeholder="Search"
+                <input id="searchString" class="form-control mr-sm-2 search-bar" type="search" placeholder="Tìm kiếm"
                     aria-label="Search" autocomplete="off" required>
             </form>
             <ul class="navbar-nav ml-auto">
                 <% if logged_in? %>
-                <li class="nav-item"><a class="nav-link" href="#">Test</a></li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                        Account <b class="caret"></b>
+                        <%= image_tag current_user.profile_picture.url, class: 'apt-account-thumbnail rounded-circle' if current_user.profile_picture? %>
+                        <%= image_tag image_path('default-user.png'), class: 'apt-account-thumbnail rounded-circle' if !current_user.profile_picture? %>
+                        <b class="caret"></b>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow-sm">
                         <div class="dropdown-item-container">
-                            <%= link_to "Settings", "#", class: "custom-dropdown-item" %>
+                            <%= link_to "Thông tin cá nhân", current_user, class: "custom-dropdown-item" %>
+                            <%= link_to "Tài khoản", "#", class: "custom-dropdown-item" %>
                             <div class="divider"></div>
-                            <%= link_to "Logout", logout_path, method: "delete", class: "custom-dropdown-item" %>
+                            <%= link_to "Đăng xuất", logout_path, method: "delete", class: "custom-dropdown-item" %>
                         </div>
                     </div>
                 </li>
@@ -40,6 +42,7 @@
                     <%= render 'shared/sign_in_modal' %>
                 </li>
                 <% end %>
+                <%= render 'shared/success_modal' %>
             </ul>
         </div>
     </div>

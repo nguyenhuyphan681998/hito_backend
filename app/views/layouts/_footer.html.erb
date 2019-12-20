@@ -15,10 +15,39 @@
     $('#rememberCheck').on('change', function () {
         this.value = this.checked ? 1 : 0;
     });
+    $("#signUpForm").submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/users.json',
+            type: 'post',
+            data: {
+                user: {
+                    email: $("#signUpEmail").val(),
+                    password: $("#signUpPassword").val(),
+                    password_confirmation: $("#signUpPasswordConf").val(),
+                    first_name: $("#signUpFirstName").val(),
+                    last_name: $("#signUpLastName").val(),
+                    name: "default"
+                }
+            },
+            beforeSend: function () {
+                $("#signUpLoader").removeClass("hidden");
+            },
+            success: function (res) {
+                $("#signUpLoader").addClass("hidden");
+                $("#signUpModal").modal('hide');
+                $("#successModal").modal('show');
+            },
+            error: function (xhr) {
+                $("#signUpLoader").addClass("hidden");
+                $("#signUpMessage").removeClass("hidden");
+            }
+        });
+    });
     $("#signInForm").submit(function (e) {
         e.preventDefault();
         $.ajax({
-            url: '/sessions',
+            url: '/sessions.json',
             type: 'post',
             data: {
                 session: {
