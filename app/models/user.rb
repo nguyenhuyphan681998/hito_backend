@@ -1,12 +1,29 @@
 class User < ApplicationRecord
-    attr_accessor :remember_token, :activation_token
+    attr_accessor :remember_token, :activation_token, :reset_token
     before_save { self.email = email.downcase }
     before_create :create_activation_digest
-    validates :name, presence: true, length: { maximum: 50 }
+    mount_uploader :profile_picture, PictureUploader
+    validates :name, presence: true, length: { maximum: 50 }, if: :name_changed?
+    validate :profile_picture_size, if: :profile_picture_changed?
     VALID_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-    validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+    validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }, if: :email_changed?
     has_secure_password
-    validates :password, presence: true, length: { minimum: 6 }
+    validates :password, presence: true, length: { minimum: 6 }, if: :password_digest_changed?
+
+
+    def create_reset_digest
+        self.reset_token = User.new_token
+        update_attribute(:reset_digest, User.digest(reset_token))
+        update_attribute(:reset_sent_at, Time.zone.now)
+    end
+
+    def send_password_reset_email
+        UserMailer.password_reset(self).deliver_now
+    end
+
+    def password_reset_expired?
+        reset_sent_at < 2.hours.ago
+    end
 
     def User.new_token
         SecureRandom.urlsafe_base64
@@ -40,5 +57,13 @@ class User < ApplicationRecord
     def create_activation_digest
         self.activation_token = User.new_token
         self.activation_digest = User.digest(activation_token)
+    end
+
+    private
+
+    def profile_picture_size
+        if profile_picture.size > 5.megabytes
+            errors.add(:picture, "should be less than 5MB")
+        end
     end
 end

@@ -3,6 +3,18 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.5'
 
+gem 'faker'
+
+gem 'will_paginate'
+
+gem 'bootstrap-will_paginate'
+
+gem 'carrierwave', '0.10.0'
+
+gem 'mini_magick', '3.8.0'
+
+gem 'fog', '1.23.0'
+
 gem 'dotenv-rails'
 
 gem 'net-ssh'
