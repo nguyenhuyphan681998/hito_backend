@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
+  get 'auth/facebook/callback/' => 'sessions#create'
+  get 'auth/failure/' => redirect('/')
   delete 'logout' => 'sessions#destroy'
   resources :users
   resources :sessions, only: [:create, :destroy]

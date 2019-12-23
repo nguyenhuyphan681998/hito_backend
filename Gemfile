@@ -7,6 +7,8 @@ gem 'faker'
 
 gem 'will_paginate'
 
+gem 'omniauth-facebook'
+
 gem 'bootstrap-will_paginate'
 
 gem 'carrierwave', '0.10.0'

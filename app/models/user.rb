@@ -10,7 +10,6 @@ class User < ApplicationRecord
     has_secure_password
     validates :password, presence: true, length: { minimum: 6 }, if: :password_digest_changed?
 
-
     def create_reset_digest
         self.reset_token = User.new_token
         update_attribute(:reset_digest, User.digest(reset_token))
@@ -32,6 +31,22 @@ class User < ApplicationRecord
     def User.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
         BCrypt::Password.create(string, cost: cost)
+    end
+
+    def User.create_with_omniauth(auth)
+        user = User.find_by(uid: auth['uid'], provider: auth['provider'])
+        if user.nil?
+            user = User.find_by(email: auth['info']['email'])
+            if user.nil?
+                user = User.create(uid: auth['uid'], provider: auth['provider'], email: auth['info']['email'], password: User.digest(User.new_token), name: 'default', first_name: auth['info']['first_name'], last_name: auth['info']['last_name'], remote_profile_picture_url: "#{auth['info']['image']}?type=large", activated: 1)
+            else
+                user.uid = auth['uid']
+                user.provider = auth['provider']
+                user.activated = 1
+                user.save
+            end
+        end
+        user
     end
     
     def remember

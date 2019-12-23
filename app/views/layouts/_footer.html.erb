@@ -12,9 +12,13 @@
             'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    $('#rememberCheck').on('change', function () {
+    $("#rememberCheck").on('change', function () {
         this.value = this.checked ? 1 : 0;
     });
+    $("#facebookLogin").on('click', function (e) {
+        e.preventDefault();
+        loginFB();
+    })
     $("#signUpForm").submit(function (e) {
         e.preventDefault();
         $.ajax({
@@ -88,34 +92,34 @@
     }
 
     $("#uploadLink").on('click', function (e) {
-            e.preventDefault();
-            $("#uploader").trigger('click');
-        });
-        $("#uploader").on('change', function (e) {
-            e.preventDefault();
-            var files = $("#uploader").get(0).files;
-            var data = new FormData();
+        e.preventDefault();
+        $("#uploader").trigger('click');
+    });
+    $("#uploader").on('change', function (e) {
+        e.preventDefault();
+        var files = $("#uploader").get(0).files;
+        var data = new FormData();
 
-            if (files.length === 0) {
-                alert('Select at least 1 file to upload.');
-                return false;
+        if (files.length === 0) {
+            alert('Select at least 1 file to upload.');
+            return false;
+        }
+
+        data.append('user[profile_picture]', files[0], files.name);
+
+        $.ajax({
+            url: '/users/<%= current_user.id if logged_in? %>',
+            method: 'put',
+            data,
+            processData: false,
+            contentType: false,
+            success: function (res) {
+                window.location.reload();
+            },
+            error: function (xhr) {
+
             }
-
-            data.append('user[profile_picture]', files[0], files.name);
-
-            $.ajax({
-                url: '/users/<%= current_user.id if logged_in? %>',
-                method: 'put',
-                data,
-                processData: false,
-                contentType: false,
-                success: function (res) {
-                    window.location.reload();
-                },
-                error: function (xhr) {
-
-                }
-            });
         });
+    });
 
 </script>
