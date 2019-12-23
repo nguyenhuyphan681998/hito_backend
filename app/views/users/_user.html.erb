@@ -11,5 +11,21 @@
         <h5 class="card-title"><%= @user.first_name %> <%= @user.last_name %></h5>
         <p class="card-text"><i class="fa fa-envelope" style="margin-right: 15px;"></i><%= @user.email %>
         </p>
+        <p class="card-text">
+            <i class="fa fa-mobile" style="margin-right: 15px;"></i>
+            <% if @user.phone? %>
+            <%= @user.phone %>
+            <% else %>
+            Chưa có
+            <% end %>
+        </p>
+        <p class="card-text">
+            <i class="fa fa-map-marker" style="margin-right: 15px;"></i>
+            <% if @user.location? %>
+            <%= @user.location %>
+            <% else %>
+            Chưa có
+            <% end %>
+        </p>
     </div>
 </div>

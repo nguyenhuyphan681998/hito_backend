@@ -131,6 +131,13 @@ hr {
 }
 
 .fa-facebook-official {
-    font-size: 60px;
     color: #3b5998;
+}
+
+.fa-6 {
+    font-size: 60px;
+}
+
+.fa-3 {
+    font-size: 30px;
 }

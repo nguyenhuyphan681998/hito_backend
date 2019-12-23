@@ -34,14 +34,16 @@ class User < ApplicationRecord
     end
 
     def User.create_with_omniauth(auth)
+        puts auth.to_yaml
         user = User.find_by(uid: auth['uid'], provider: auth['provider'])
         if user.nil?
             user = User.find_by(email: auth['info']['email'])
             if user.nil?
-                user = User.create(uid: auth['uid'], provider: auth['provider'], email: auth['info']['email'], password: User.digest(User.new_token), name: 'default', first_name: auth['info']['first_name'], last_name: auth['info']['last_name'], remote_profile_picture_url: "#{auth['info']['image']}?type=large", activated: 1)
+                user = User.create(uid: auth['uid'], provider: auth['provider'], link: auth['info']['urls']['Facebook'], email: auth['info']['email'], password: User.digest(User.new_token), name: 'default', first_name: auth['info']['first_name'], last_name: auth['info']['last_name'], remote_profile_picture_url: "#{auth['info']['image']}?type=large", activated: 1)
             else
                 user.uid = auth['uid']
                 user.provider = auth['provider']
+                user.link = auth['info']['urls']['Facebook']
                 user.activated = 1
                 user.save
             end

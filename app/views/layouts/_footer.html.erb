@@ -6,23 +6,51 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"
+    integrity="sha256-DI6NdAhhFRnO2k51mumYeDShet3I8AKCQf/tf7ARNhI=" crossorigin="anonymous"></script>
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
     $("#rememberCheck").on('change', function () {
         this.value = this.checked ? 1 : 0;
     });
     $("#facebookLogin").on('click', function (e) {
         e.preventDefault();
         loginFB();
-    })
+    });
+    $("#editUserForm").submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/users/<%= current_user.id if logged_in? %>.json',
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'put',
+            data: {
+                user: {
+                    location: $("#editLocation").val(),
+                    about: $("#editAbout").val()
+                }
+            },
+            beforeSend: function () {
+                $("#editUserLoader").removeClass("hidden");
+            },
+            success: function (res) {
+                $("#editUserLoader").addClass("hidden");
+                $("#editUserLoader").modal('hide');
+                window.location.reload();
+            },
+            error: function (xhr) {
+                $("#signUpLoader").addClass("hidden");
+                $("#signUpMessage").removeClass("hidden");
+            }
+        });
+    });
     $("#signUpForm").submit(function (e) {
         e.preventDefault();
         $.ajax({
             url: '/users.json',
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
             type: 'post',
             data: {
                 user: {
@@ -53,6 +81,9 @@
         $.ajax({
             url: '/sessions.json',
             type: 'post',
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
             data: {
                 session: {
                     email: $("#signInEmail").val(),
@@ -78,6 +109,9 @@
         $.ajax({
             url: '/sessions',
             type: 'delete',
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
             beforeSend: function () {
                 $("#signOutLoader").show();
             },
@@ -108,8 +142,11 @@
         data.append('user[profile_picture]', files[0], files.name);
 
         $.ajax({
-            url: '/users/<%= current_user.id if logged_in? %>',
+            url: '/users/<%= current_user.id if logged_in? %>.json',
             method: 'put',
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
             data,
             processData: false,
             contentType: false,
@@ -121,5 +158,30 @@
             }
         });
     });
-
+    function initMap() {
+        var lng;
+        var lat;
+        var string = '<%= @user.location if !@user.nil?%>';
+        console.log(encodeURI(string));
+        $.ajax({
+            url: `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURI(string)}&key=<%= ENV['GOOGLE_API_KEY'] %>`,
+            method: 'get',
+            success: function (res) {
+                lng = res.results[0].geometry.location.lng;
+                lat = res.results[0].geometry.location.lat;
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat, lng },
+                    zoom: 15
+                });
+                var marker = new google.maps.Marker({
+                    position: { lat, lng },
+                    map
+                });
+            },
+            error: function (xhr) {
+            }
+        });
+    }
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async
+    defer></script>

@@ -24,7 +24,10 @@ class SessionsController < ApplicationController
           message = "Account not activated. "
           message += "Check your email for the activation link"
           flash[:warning] = message
-          redirect_to root_url
+          respond_to do |format|
+            format.html { redirect_to root_url }
+            format.json { render json: { message: 'Account not activated' } }
+          end
         end
       else
         respond_to do |format|
