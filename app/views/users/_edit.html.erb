@@ -4,7 +4,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editUserModalTitle">Chỉnh sửa thông tin</h5>
+        <h5 class="modal-title" id="editUserModalTitle"><%= t('users._edit.edit_profile') %></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -12,20 +12,20 @@
       <form id="editUserForm">
         <div class="modal-body">
           <div class="form-group">
-            <label for="editLocation">Địa chỉ</label>
+            <label for="editLocation"><%= t('users._edit.address') %></label>
             <input type="text" class="form-control" id="editLocation" aria-describedby="locationHelp"
-              placeholder="Nhập địa chỉ" value="<%= @user.location %>" required>
-            <small id="locationHelp" class="form-text text-muted">Nhập địa chỉ chính xác giúp Google Maps định vị được bạn.</small>
+              placeholder="<%= t('users._edit.enter_address') %> " value="<%= @user.location %>" required>
+            <small id="locationHelp" class="form-text text-muted"><%= t('users._edit.enter_location') %></small>
           </div>
           <div class="form-group">
-            <label for="editAbout">Về bản thân</label>
+            <label for="editAbout"><%= t('users._edit.about') %></label>
             <textarea rows="5" type="text" class="form-control" id="editAbout"
-              placeholder="Nhập giới thiệu về bản thân bạn" required><%= @user.about %></textarea>
+              placeholder="<%= t('users._edit.enter_introduction') %>" required><%= @user.about %></textarea>
           </div>
         </div>
         <div class="modal-footer">
           <div class="loader hidden" id="editUserLoader"></div>
-          <button type="submit" class="btn btn-primary">Lưu</button>
+          <button type="submit" class="btn btn-primary"><%= t('users._edit.save') %></button>
         </div>
       </form>
     </div>

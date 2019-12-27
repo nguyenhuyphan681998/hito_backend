@@ -30,4 +30,76 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  # hello: "Hello world"
+  users:
+    show:
+      edit: 'Edit Profile'
+      join: 'Join in'
+      hello: 'Hello,I am '
+      about: 'About me'
+      not: 'Not yet'
+      map: 'Location'
+
+    _edit:
+      edit_profile: 'Edit Profile'
+      address: 'Address'
+      about: 'About me'
+      save: 'Save'
+      enter_location: 'Enter the correct address helps Google Maps locate you.'
+      enter_introduction: 'Enter an introduction about yourself'
+      enter_address: 'Enter address'
+
+    _user:
+      update_photo: 'Update photo'
+      not: 'Not yet'
+
+    edit:
+      edit_user: 'Editing User'
+
+    index:
+      name: 'Name'
+      email: 'Email'
+      confirm: 'Are you sure?'
+
+    new:
+      signup: 'Sign up'
+      create: 'Çreate account'
+
+  layouts:
+    _header:
+      signup: 'Sign up'
+      signin: 'Sign in'
+      search: 'Search'
+      profile: 'Profile'
+      account: 'Account'
+      logout: 'Log Out'
+
+  shared:
+    _sign_in_modal:
+      signin: 'Sign In'
+      error: 'Wrong email or password'
+      email_add: 'Email address'
+      enter_email: 'Enter email address'
+      password: 'Password'
+      enter_pw: 'Enter password'
+      signin_with: 'Or sign in with: '
+      save_signin: 'Save signin'
+
+    _sign_up_modal:
+      signup: 'Sign up'
+      error_email: 'Email already has users'
+      lastname: 'Last Name'
+      enter_lastname: 'Enter last name'
+      firstname: 'First Name'
+      enter_firstname: 'Enter first name'
+      email_add: 'Email address'
+      enter_email: 'Enter email address'
+      note: 'An email corresponds to only one account.'
+      length: 'Length greater than 6 characters.'
+      password: 'Password'
+      enter_pw: 'Enter password'
+      repassword: 'Repassword'
+      enter_repw: 'Enter repassword'
+
+    _success_modal:
+      success: 'Success'
