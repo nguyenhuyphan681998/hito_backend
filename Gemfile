@@ -23,6 +23,10 @@ gem 'net-ssh'
 
 gem 'xmlrpc'
 
+gem 'jquery-ui-rails'
+
+gem 'ransack'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.1'
 # Use mysql as the database for Active Record

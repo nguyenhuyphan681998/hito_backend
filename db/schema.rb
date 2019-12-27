@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_22_160416) do
+ActiveRecord::Schema.define(version: 2019_12_23_120205) do
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
@@ -30,6 +30,9 @@ ActiveRecord::Schema.define(version: 2019_12_22_160416) do
     t.datetime "reset_sent_at"
     t.string "provider"
     t.string "uid"
+    t.string "location"
+    t.string "phone"
+    t.string "link"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
