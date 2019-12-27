@@ -4,7 +4,7 @@
 
     <% if current_user?(@user) %>
     <input id="uploader" type="file" name="profilePicture" hidden>
-    <a id="uploadLink" class="edit-link" href="#" style="margin: auto">Cập nhật ảnh</a>
+    <a id="uploadLink" class="edit-link" href="#" style="margin: auto"><%= t('users._user.update_photo')%></a>
     <% end %>
     <hr class="my-4 apt-line-8">
     <div class="card-body">
@@ -16,7 +16,7 @@
             <% if @user.phone? %>
             <%= @user.phone %>
             <% else %>
-            Chưa có
+            <%= t('users._user.not')%>
             <% end %>
         </p>
         <p class="card-text">
@@ -24,7 +24,7 @@
             <% if @user.location? %>
             <%= @user.location %>
             <% else %>
-            Chưa có
+            <%= t('users._user.not')%>
             <% end %>
         </p>
     </div>

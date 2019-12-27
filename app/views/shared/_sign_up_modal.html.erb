@@ -4,45 +4,45 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="signUpModalTitle">Đăng ký</h5>
+        <h5 class="modal-title" id="signUpModalTitle"><%= t('shared._sign_up_modal.signup') %></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <form id="signUpForm">
         <div class="modal-body">
-          <small class="hidden" id="signUpMessage" style="color: red;">Email đã có người dùng</small>
+          <small class="hidden" id="signUpMessage" style="color: red;"><%= t('shared._sign_up_modal.error_email') %></small>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="signUpLastName">Họ</label>
-              <input type="text" class="form-control" id="signUpLastName" placeholder="Nhập họ" required>
+              <label for="signUpLastName"><%= t('shared._sign_up_modal.lastname') %></label>
+              <input type="text" class="form-control" id="signUpLastName" placeholder="<%= t('shared._sign_up_modal.enter_lastname') %>" required>
             </div>
             <div class="form-group col-md-6">
-              <label for="signUpFirstName">Tên</label>
-              <input type="text" class="form-control" id="signUpFirstName" placeholder="Nhập tên và đệm" required>
+              <label for="signUpFirstName"><%= t('shared._sign_up_modal.firstname') %></label>
+              <input type="text" class="form-control" id="signUpFirstName" placeholder="<%= t('shared._sign_up_modal.enter_firstname') %>" required>
             </div>
           </div>
           <div class="form-group">
-            <label for="signUpEmail">Địa chỉ email</label>
+            <label for="signUpEmail"><%= t('shared._sign_up_modal.email_add') %></label>
             <input type="email" class="form-control" id="signUpEmail" aria-describedby="emailHelp"
-              placeholder="Nhập địa chỉ email" required>
-            <small id="emailHelp" class="form-text text-muted">Một email tương ứng với duy nhất một tài khoản.</small>
+              placeholder="<%= t('shared._sign_up_modal.enter_email') %>" required>
+            <small id="emailHelp" class="form-text text-muted"><%= t('shared._sign_up_modal.note') %></small>
           </div>
           <div class="form-group">
-            <label for="signUpPassword">Mật khẩu</label>
-            <input type="password" class="form-control" id="signUpPassword" placeholder="Nhập mật khẩu" minlength="6"
+            <label for="signUpPassword"><%= t('shared._sign_up_modal.password') %></label>
+            <input type="password" class="form-control" id="signUpPassword" placeholder="<%= t('shared._sign_up_modal.enter_pw') %>" minlength="6"
               required>
-            <small id="passwordHelp" class="form-text text-muted">Độ dài lớn hơn 6 kí tự.</small>
+            <small id="passwordHelp" class="form-text text-muted"><%= t('shared._sign_up_modal.length') %></small>
           </div>
           <div class="form-group">
-            <label for="signUpPassword">Xác nhận mật khẩu</label>
-            <input type="password" class="form-control" id="signUpPasswordConf" placeholder="Nhập lại mật khẩu"
+            <label for="signUpPassword"><%= t('shared._sign_up_modal.repassword') %></label>
+            <input type="password" class="form-control" id="signUpPasswordConf" placeholder="<%= t('shared._sign_up_modal.enter_repw') %>"
               required>
           </div>
         </div>
         <div class="modal-footer">
           <div class="loader hidden" id="signUpLoader"></div>
-          <button type="submit" class="btn btn-primary">Đăng ký</button>
+          <button type="submit" class="btn btn-primary"><%= t('shared._sign_up_modal.signup') %></button>
         </div>
       </form>
     </div>

@@ -12,6 +12,10 @@
 </head>
 
 <body>
+   <ul>
+    <li><%= link_to 'Vietnamese', root_path(locale: :vi) %></li>
+    <li><%= link_to 'English', root_path(locale: :en) %></li>
+  </ul>
   <div id="fb-root"></div>
   <script>
     window.fbAsyncInit = function () {

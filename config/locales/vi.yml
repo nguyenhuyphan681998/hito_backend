@@ -1,0 +1,75 @@
+vi:
+
+  users:
+    show:
+      edit: 'Chỉnh sửa profile'
+      join: 'Tham gia vào'
+      hello: 'Xin chào,tôi là '
+      about: 'Về bản thân '
+      not: 'Çhưa có'
+      map: 'Vị trí'
+
+    _edit:
+      edit_profile: 'Chỉnh sửa thông tin '
+      address: 'Địa chỉ'
+      about: 'Về bản thân '
+      save: 'Lưu'
+      enter_location: 'Nhập địa chỉ chính xác giúp Google Maps định vị được bạn.'
+      enter_introduction: 'Nhập giới thiệu về bản thân bạn'
+      enter_address: 'Nhập địa chỉ'
+
+    _user:
+      update_photo: 'Cập nhật ảnh'
+      not: 'Chưa có'
+
+    edit:
+      edit_user: 'Çhỉnh sửa người dùng'
+
+    index:
+      name: 'Tên người dùng'
+      email: 'Địa chỉ email'
+      confirm: 'Bạn chắc chắn?'
+
+    new:
+      signup: 'Đăng ký'
+      create: 'Tạo tài khoản'
+
+  layouts:
+    _header:
+      signup: 'Đăng ký'
+      signin: 'Đăng nhập'
+      search: 'Tìm kiếm'
+      infor: 'Thông tin cá nhân'
+      account: 'Tài khoản'
+      logout: 'Đăng xuất'
+
+  shared:
+    _sign_in_modal:
+      signin: 'Đăng nhập'
+      error: 'Sai email hoặc mật khẩu'
+      email_add: 'Địa chỉ email'
+      enter_email: 'Nhập địa chỉ email'
+      password: 'Mật khẩu'
+      enter_pw: 'Nhập mật khẩu'
+      signin_with: 'Hoặc đăng nhập với: '
+      save_signin: 'Lưu đăng nhập '
+
+    _sign_up_modal:
+      signup: 'Đăng nhập'
+      error_email: 'Email đã có người dùng'
+      lastname: 'Họ'
+      enter_lastname: 'Nhập họ'
+      firstname: 'Tên đệm'
+      enter_firstname: 'Nhập tên đệm'
+      email_add: 'Địa chỉ email'
+      enter_email: 'Nhập địa chỉ email'
+      note: 'Một email tương ứng với duy nhất một tài khoản.'
+      length: 'Độ dài lớn hơn 6 kí tự.'
+      password: 'Mật khẩu'
+      enter_pw: 'Nhập mật khẩu'
+      repassword: 'Xác nhận mật khẩu'
+      enter_repw: 'Nhập xác nhận mật khẩu'
+
+    _success_modal:
+      success: 'Thành công'
+
