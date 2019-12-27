@@ -12,11 +12,9 @@ Rails.application.routes.draw do
   get 'auth/facebook/callback/' => 'sessions#create'
   get 'auth/failure/' => redirect('/')
   delete 'logout' => 'sessions#destroy'
-  scope "(:locale)", locale: /en|vi/ do
     resources :users
     resources :sessions, only: [:create, :destroy]
     resources :account_activations, only: [:edit]
     resources :password_resets, only: [:new, :create, :edit, :update]
-  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -39,7 +39,7 @@ vi:
       signup: 'Đăng ký'
       signin: 'Đăng nhập'
       search: 'Tìm kiếm'
-      infor: 'Thông tin cá nhân'
+      profile: 'Thông tin cá nhân'
       account: 'Tài khoản'
       logout: 'Đăng xuất'
 

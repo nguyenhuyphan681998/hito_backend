@@ -70,9 +70,9 @@ en:
       signup: 'Sign up'
       signin: 'Sign in'
       search: 'Search'
-      infor: 'Personal Information'
-      accoutn: 'Account'
-      logout: 'Log out'
+      profile: 'Profile'
+      account: 'Account'
+      logout: 'Log Out'
 
   shared:
     _sign_in_modal:
