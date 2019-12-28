@@ -1,10 +1,16 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update]
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.search(params[:term])
+    respond_to do |format|
+      format.html 
+      format.json { render json: @users }
+    end
   end
 
   # GET /users/1

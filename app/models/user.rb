@@ -10,6 +10,14 @@ class User < ApplicationRecord
     has_secure_password
     validates :password, presence: true, length: { minimum: 6 }, if: :password_digest_changed?
 
+    
+    def User.search(term)
+        if !term
+            term = ''
+        end
+        where('LOWER(first_name) LIKE :term OR LOWER(last_name) LIKE :term OR LOWER(email) LIKE :term OR LOWER(location) LIKE :term OR LOWER(phone) LIKE :term', term: "%#{term.downcase}%")
+    end
+
     def create_reset_digest
         self.reset_token = User.new_token
         update_attribute(:reset_digest, User.digest(reset_token))

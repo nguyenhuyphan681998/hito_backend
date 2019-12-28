@@ -47,6 +47,41 @@
     animation: spin 1s linear infinite;
 }
 
+#suggestionBox {
+    position: absolute;
+    width: 25vw !important;
+    display: flex;
+    flex-direction: column;
+    border-width: 0.5px !important;
+    font-weight: 500;
+    border-color: #EAEAEA;
+    border-style: solid;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+}
+
+.ui-menu-item {
+    margin-top: 1rem;
+}
+
+.ui-menu-item > a > img {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.ui-menu {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
 /* Safari */
 @-webkit-keyframes spin {
     0% { -webkit-transform: rotate(0deg); }

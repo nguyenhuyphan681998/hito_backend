@@ -4,7 +4,7 @@ vi:
     show:
       edit: 'Chỉnh sửa profile'
       join: 'Tham gia vào'
-      hello: 'Xin chào,tôi là '
+      hello: 'Xin chào, tôi là '
       about: 'Về bản thân '
       not: 'Çhưa có'
       map: 'Vị trí'
@@ -42,6 +42,8 @@ vi:
       profile: 'Thông tin cá nhân'
       account: 'Tài khoản'
       logout: 'Đăng xuất'
+      language: 'Ngôn ngữ'
+
 
   shared:
     _sign_in_modal:

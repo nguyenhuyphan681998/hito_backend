@@ -182,6 +182,29 @@
             }
         });
     }
+    $(function () {
+        $("#searchString").autocomplete({
+            delay: 500,
+            source: '/users.json',
+            appendTo: '#suggestionBox',
+            focus: function (event, ui) {
+                event.preventDefault();
+            }
+        })
+            .data("ui-autocomplete")._renderItem = function (ul, item) {
+                console.log(item);
+                return $("<li>")
+                    .append(
+                        `<a href="/users/${item.id}">
+                            <img class="apt-account-thumbnail rounded-circle" src="${item.profile_picture.url}" onerror="this.src='/assets/default-user.png'">
+                            ${item.first_name} ${item.last_name}
+                        </a>
+                        <hr>
+                        `
+                    )
+                    .appendTo(ul);
+            }
+    });
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async
     defer></script>

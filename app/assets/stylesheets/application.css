@@ -24,6 +24,10 @@ a {
     text-decoration: none !important;
 }
 
+li {
+    list-style-type: none;
+}
+
 header {
     margin-bottom: 20px;
 }
@@ -78,8 +82,8 @@ header {
     height: 50px;
     border-bottom: solid 1px #EAEAEA;
     flex-direction: column;
-      justify-content: center;
-      font-weight: 500;
+    justify-content: center;
+    font-weight: 500;
 }
 
 

@@ -34,18 +34,18 @@ en:
   users:
     show:
       edit: 'Edit Profile'
-      join: 'Join in'
-      hello: 'Hello,I am '
-      about: 'About me'
-      not: 'Not yet'
+      join: 'Joined in'
+      hello: 'Hi, I am'
+      about: 'About'
+      not: 'None'
       map: 'Location'
 
     _edit:
       edit_profile: 'Edit Profile'
       address: 'Address'
-      about: 'About me'
+      about: 'About'
       save: 'Save'
-      enter_location: 'Enter the correct address helps Google Maps locate you.'
+      enter_location: 'Entering the correct address will help Google Maps locate you.'
       enter_introduction: 'Enter an introduction about yourself'
       enter_address: 'Enter address'
 
@@ -63,7 +63,7 @@ en:
 
     new:
       signup: 'Sign up'
-      create: 'Çreate account'
+      create: 'Create account'
 
   layouts:
     _header:
@@ -73,6 +73,7 @@ en:
       profile: 'Profile'
       account: 'Account'
       logout: 'Log Out'
+      language: 'Language'
 
   shared:
     _sign_in_modal:
